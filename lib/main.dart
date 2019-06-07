@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'CustomAppbar.dart';
+import 'flight_list.dart';
 
 void main() => runApp(MaterialApp(
       title: "Flight List Mock Up",
@@ -17,11 +18,15 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       bottomNavigationBar: CustomAppBar(),
       backgroundColor: Colors.white,
-      body: Column(
-        children: <Widget>[
-          HomeScreenTopPart(),
-          homeScreenBottomPart,
-        ],
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: <Widget>[
+            HomeScreenTopPart(),
+            homeScreenBottomPart,
+            homeScreenBottomPart,
+          ],
+        ),
       ),
     );
   }
@@ -117,9 +122,18 @@ class _HomeScreenTopPartState extends State<HomeScreenTopPart> {
                               elevation: 5.0,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(30.0)),
-                              child: Icon(
-                                Icons.search,
-                                color: Colors.black54,
+                              child: InkWell(
+                                child: Icon(
+                                  Icons.search,
+                                  color: Colors.black54,
+                                ),
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              FlightListing()));
+                                },
                               ),
                             ),
                             contentPadding: EdgeInsets.symmetric(
